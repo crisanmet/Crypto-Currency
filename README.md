@@ -1,1 +1,1 @@
-# Crypton-Currency
+# Crypto-Currency
