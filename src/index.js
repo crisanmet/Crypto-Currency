@@ -37,4 +37,18 @@ const opciones = {
 
 fetch(`${CORS}${URL}`, opciones)
   .then((res) => res.json())
-  .then((coins) => console.log(coins.data.coins));
+  .then((coins) => renderizarCripto(coins.data.coins))
+  .catch((err) => console.log(err));
+
+const renderizarCripto = (coins) => {
+  coins.forEach((coin) => {
+    if (coin.price > 1) {
+      $template.querySelector(".card-header").textContent = coin.symbol;
+      $template.querySelector(".card-title").textContent = coin.price;
+
+      const clon = $template.cloneNode(true);
+      $fragment.appendChild(clon);
+    }
+    $container.appendChild($fragment);
+  });
+};
