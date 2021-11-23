@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -12,7 +13,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid d-flex">
+      <div class="container-fluid">
         <a class="navbar-brand" href="#">Crypto-Nita</a>
         <button
           class="navbar-toggler"
@@ -28,9 +29,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <form class="d-flex">
             <input
-              class="form-control me-2"
+              class="search form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search Cripto"
               aria-label="Search"
             />
             <button class="btn btn-outline-success" type="submit">
@@ -40,23 +41,36 @@
         </div>
       </div>
     </nav>
-    <div class="container-fluid"></div>
+    <div class="contenedor-coins"></div>
     <template class="template-card">
-      <div class="card text-white bg-primary mb-3" style="max-width: 18rem">
-        <div class="card-header">
-          Header
-          <img src="" alt="" class="img-fluid" />
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Primary card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+      <div class="card">
+        <div
+          class="card text-white bg-primary mb-3 d-flex"
+          style="max-width: 13rem"
+        >
+          <div class="card-header">
+            <span class="rank"></span>
+            <img src="" alt="" class="img-fluid" />
+            <h3 class="name"></h3>
+          </div>
+          <div class="card-body">
+            <h5 class="price"></h5>
+            <p class="price-change"></p>
+          </div>
         </div>
       </div>
     </template>
+    <template id="my-template">
+      <swal-title> Save changes to "Untitled 1" before closing? </swal-title>
+      <swal-icon type="warning" color="red"></swal-icon>
+      <swal-button type="confirm"> Save As </swal-button>
+      <swal-button type="cancel"> Cancel </swal-button>
+      <swal-button type="deny"> Close without Saving </swal-button>
+      <swal-param name="allowEscapeKey" value="false" />
+      <swal-param name="customClass" value='{ "popup": "my-popup" }' />
+    </template>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="src/index.js"></script>
   </body>
 </html>

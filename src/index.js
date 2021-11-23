@@ -1,40 +1,47 @@
 const $template = document.querySelector(".template-card").content;
-const $container = document.querySelector(".container-fluid");
+const $container = document.querySelector(".contenedor-coins");
 const $fragment = document.createDocumentFragment();
+const $inputBtn = document.querySelector(".search");
 
-// const URL = "https://api.binance.com";
-// const path = "/api/v3/ticker/price";
+const URL =
+  "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false";
 
-// fetch(`${URL}${path} `)
-//   .then((res) => res.json())
-//   .then((coins) => renderizarCripto(coins));
+fetch(URL)
+  .then((res) => res.json())
+  .then((coins) => renderizarCripto(coins))
+  .catch((err) => console.log(err));
 
-// const renderizarCripto = (coins) => {
-//   coins.forEach((coin) => {
-//     if (coin.price > 1) {
-//       $template.querySelector(".card-header").textContent = coin.symbol;
-//       $template.querySelector(".card-title").textContent = coin.price;
+const renderizarCripto = (coins) => {
+  console.log(coins);
+  coins.forEach((coin) => {
+    $template.querySelector(".rank").textContent = `#${coin.market_cap_rank}`;
+    $template.querySelector(".img-fluid").setAttribute("src", coin.image);
+    $template.querySelector(".name").textContent = coin.name;
+    $template.querySelector(".price").textContent = `$${coin.current_price}`;
+    $template.querySelector(".price-change").textContent =
+      coin.price_change_percentage_24h;
 
-//       const clon = $template.cloneNode(true);
-//       $fragment.appendChild(clon);
-//     }
-//     $container.appendChild($fragment);
-//   });
-// };
-
-const URL = "https://api.coinranking.com/v2/coins";
-const CORS = "https://cors-anywhere.herokuapp.com/";
-const API_KEY = "coinranking907ec8401d89fceee51c44307229855f0320e003ce580655";
-
-const opciones = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    "x-access-token": `${API_KEY}`,
-    "Access-Control-Allow-Origin": "*",
-  },
+    const clon = $template.cloneNode(true);
+    $fragment.appendChild(clon);
+  });
+  $container.appendChild($fragment);
 };
 
-fetch(`${CORS}${URL}`, opciones)
-  .then((res) => res.json())
-  .then((coins) => console.log(coins.data.coins));
+$container.addEventListener("click", (e) => {
+  if (e.target.classList.contains("img-fluid")) {
+    Swal.fire({
+      template: "#my-template",
+    });
+  }
+});
+
+$inputBtn.addEventListener("keyup", (e) => {
+  if (e.key === "Escape") e.target.value = "";
+  document
+    .querySelectorAll(".card")
+    .forEach((el) =>
+      el.textContent.toLowerCase().includes(e.target.value)
+        ? el.classList.remove("filter")
+        : el.classList.add("filter")
+    );
+});
