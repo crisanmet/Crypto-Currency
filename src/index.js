@@ -1,4 +1,6 @@
 const $template = document.querySelector(".template-card").content;
+const $templateTabla = document.querySelector(".template-tabla").content;
+const $contenedorTabla = document.querySelector(".tabla-coins");
 const $container = document.querySelector(".contenedor-coins");
 const $fragment = document.createDocumentFragment();
 const $inputBtn = document.querySelector(".search");
@@ -14,19 +16,25 @@ fetch(URL)
 const renderizarCripto = (coins) => {
   console.log(coins);
   coins.forEach((coin) => {
-    $template.querySelector(".rank").textContent = `#${coin.market_cap_rank}`;
-    $template.querySelector(".img-fluid").setAttribute("src", coin.image);
-    $template.querySelector(".name").textContent = coin.name;
-    $template.querySelector(".price").textContent = `$${coin.current_price}`;
-    $template.querySelector(".price-change").textContent =
+    $templateTabla.querySelector(".rank").textContent = coin.market_cap_rank;
+    $templateTabla.querySelector(".img-fluid").setAttribute("src", coin.image);
+    $templateTabla.querySelector(".name").textContent = coin.name;
+    $templateTabla.querySelector(".price").textContent = Intl.NumberFormat(
+      "en-US",
+      { style: "currency", currency: "USD" }
+    ).format(coin.current_price);
+    $templateTabla.querySelector(".capitalize").textContent = Intl.NumberFormat(
+      "en-US",
+      { style: "currency", currency: "USD" }
+    ).format(coin.market_cap);
+    $templateTabla.querySelector(".price-change").textContent =
       coin.price_change_percentage_24h;
 
-    const clon = $template.cloneNode(true);
-    $fragment.appendChild(clon);
+    const clone = $templateTabla.cloneNode(true);
+    $fragment.appendChild(clone);
   });
-  $container.appendChild($fragment);
+  $contenedorTabla.appendChild($fragment);
 };
-
 $container.addEventListener("click", (e) => {
   if (e.target.classList.contains("img-fluid")) {
     Swal.fire({
@@ -38,7 +46,7 @@ $container.addEventListener("click", (e) => {
 $inputBtn.addEventListener("keyup", (e) => {
   if (e.key === "Escape") e.target.value = "";
   document
-    .querySelectorAll(".card")
+    .querySelectorAll(".tr-coins")
     .forEach((el) =>
       el.textContent.toLowerCase().includes(e.target.value)
         ? el.classList.remove("filter")
