@@ -18,9 +18,10 @@
   gap: 1.5rem;
   padding: 2rem;
 }
+.clickeable {
+  cursor: pointer;
+}
 
 .filter {
-  visibility: hidden;
-  opacity: 0;
-  order: 1;
+  display: none;
 }

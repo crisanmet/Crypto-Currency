@@ -41,38 +41,27 @@
         </div>
       </div>
     </nav>
-    <div class="contenedor-coins"></div>
-    <template class="template-card">
-      <div
-        class="card text-white bg-primary mb-3 d-flex"
-        style="max-width: 13rem"
-      >
-        <div class="card-header">
-          <span class="rank"></span>
-          <img src="" alt="" class="img-fluid" />
-          <h3 class="name"></h3>
-        </div>
-        <div class="card-body">
-          <h5 class="price"></h5>
-          <p class="price-change"></p>
-        </div>
-      </div>
-    </template>
 
     <table class="table table-hover">
       <thead class="table-dark">
         <tr>
           <th scope="col">#</th>
           <th scope="col" colspan="2">Criptomoneda</th>
-          <th scope="col">Precio</th>
+          <th scope="col">
+            <select class="form-select">
+              <option selected value="usd">USD</option>
+              <option value="eur">EUR</option>
+              <option value="ars">ARS</option>
+            </select>
+          </th>
           <th scope="col">Capitalización de Mercado</th>
-          <th scope="col">Porcentaje</th>
+          <th scope="col">24Hs Cambio</th>
         </tr>
       </thead>
       <tbody class="tabla-coins"></tbody>
     </table>
     <template class="template-tabla">
-      <tr class="tr-coins">
+      <tr class="tr-coins clickeable">
         <td class="rank"></td>
         <td><img class="img-fluid" width="26" height="26" src="" alt="" /></td>
         <td class="name"></td>
