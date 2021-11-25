@@ -62,10 +62,40 @@ $contenedorTabla.addEventListener("click", (e) => {
   }
 });
 
-const modalSweetAlert = (e) => {
-  console.log(e.parentElement);
-  Swal.fire({
-    title: `${e}`,
+const modalSweetAlert = async (e) => {
+  const name = e.childNodes[5].firstChild.nodeValue;
+
+  const { value: fecha } = await Swal.fire({
+    title: `Obtener Historico de: ${name}`,
+
+    html: `<form>
+               <label>Ingrese la fecha:</label>
+               <input type="date" max="2021-12-31">
+           </form>
+    `,
+    confirmButtonText: "Ver resultado",
+    showLoaderOnConfirm: true,
+    preConfirm: (fecha) => {
+      return fetch(
+        `https://api.coingecko.com/api/v3/coins/${name}/history?date=${fecha}`
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+        .catch((error) => {
+          Swal.showValidationMessage(`Request failed: ${error}`);
+        });
+    },
+    allowOutsideClick: () => !Swal.isLoading(),
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: `${result.current_price}`,
+      });
+    }
   });
 };
 $inputBtn.addEventListener("keyup", (e) => {

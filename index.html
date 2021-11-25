@@ -61,7 +61,11 @@
       <tbody class="tabla-coins"></tbody>
     </table>
     <template class="template-tabla">
-      <tr class="tr-coins clickeable">
+      <tr
+        class="tr-coins clickeable"
+        data-bs-toggle="modal"
+        data-bs-target="#modal-coin"
+      >
         <td class="rank"></td>
         <td><img class="img-fluid" width="26" height="26" src="" alt="" /></td>
         <td class="name"></td>
@@ -70,6 +74,34 @@
         <td class="price-change"></td>
       </tr>
     </template>
+    <div class="modal fade" id="modal-coin" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <template id="my-template">
       <swal-title> Save changes to "Untitled 1" before closing? </swal-title>
       <swal-icon type="warning" color="red"></swal-icon>
