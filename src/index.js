@@ -67,7 +67,7 @@ const modalSweetAlert = (e) => {
 
   Swal.fire({
     title: `Obtener Historico de: ${$moneda}`,
-    text: "Por favor ingrese el formato en dd/mm/yyyy",
+    text: "Por favor ingrese el formato en dd-mm-yyyy",
     input: "text",
     inputAttributes: {
       autocapitalize: "off",
