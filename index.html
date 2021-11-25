@@ -15,18 +15,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Crypto-Nita</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div>
           <form class="d-flex">
             <input
               class="search form-control me-2"
@@ -74,46 +64,8 @@
         <td class="price-change"></td>
       </tr>
     </template>
-    <div class="modal fade" id="modal-coin" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>Modal body text goes here.</p>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <template id="my-template">
-      <swal-title> Save changes to "Untitled 1" before closing? </swal-title>
-      <swal-icon type="warning" color="red"></swal-icon>
-      <swal-input type="text"></swal-input>
-      <swal-button type="confirm"> Save As </swal-button>
-      <swal-button type="cancel"> Cancel </swal-button>
-      <swal-button type="deny"> Close without Saving </swal-button>
-      <swal-param name="allowEscapeKey" value="false" />
-      <swal-param name="customClass" value='{ "popup": "my-popup" }' />
-    </template>
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="src/index.js"></script>
   </body>
 </html>

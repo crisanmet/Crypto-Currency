@@ -62,22 +62,22 @@ $contenedorTabla.addEventListener("click", (e) => {
   }
 });
 
-const modalSweetAlert = async (e) => {
-  const name = e.childNodes[5].firstChild.nodeValue;
+const modalSweetAlert = (e) => {
+  const $moneda = e.childNodes[5].firstChild.nodeValue.toLowerCase();
 
-  const { value: fecha } = await Swal.fire({
-    title: `Obtener Historico de: ${name}`,
-
-    html: `<form>
-               <label>Ingrese la fecha:</label>
-               <input type="date" max="2021-12-31">
-           </form>
-    `,
-    confirmButtonText: "Ver resultado",
+  Swal.fire({
+    title: `Obtener Historico de: ${$moneda}`,
+    text: "Por favor ingrese el formato en dd/mm/yyyy",
+    input: "text",
+    inputAttributes: {
+      autocapitalize: "off",
+    },
+    showCancelButton: true,
+    confirmButtonText: "Look up",
     showLoaderOnConfirm: true,
     preConfirm: (fecha) => {
       return fetch(
-        `https://api.coingecko.com/api/v3/coins/${name}/history?date=${fecha}`
+        `https://api.coingecko.com/api/v3/coins/${$moneda}/history?date=${fecha}`
       )
         .then((response) => {
           if (!response.ok) {
@@ -86,18 +86,24 @@ const modalSweetAlert = async (e) => {
           return response.json();
         })
         .catch((error) => {
-          Swal.showValidationMessage(`Request failed: ${error}`);
+          Swal.showValidationMessage(
+            `Por favor ingrese una fecha valida,Request failed: ${error}`
+          );
         });
     },
+    backdrop: true,
     allowOutsideClick: () => !Swal.isLoading(),
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
-        title: `${result.current_price}`,
+        icon: "success",
+        title: `El valor del ${$moneda} era de:`,
+        text: `$${result.value.market_data.current_price.usd.toFixed(2)}`,
       });
     }
   });
 };
+
 $inputBtn.addEventListener("keyup", (e) => {
   if (e.key === "Escape") e.target.value = "";
   document

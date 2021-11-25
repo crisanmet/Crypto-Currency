@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/crisanmet/Crypto-Currency#readme",
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.1.3",
+    "sweetalert2": "^11.2.1"
   }
 }
