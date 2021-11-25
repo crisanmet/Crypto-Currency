@@ -11,18 +11,17 @@
   text-transform: capitalize;
   transition: all 0.2s linear;
 }
-html {
-  font-size: 62.5%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-*::selection {
-  background: rgb(102, 73, 73);
-  color: #fff;
-}
-.container-fluid {
+
+.contenedor-coins {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  padding: 2rem 9%;
+  padding: 2rem;
+}
+.clickeable {
+  cursor: pointer;
+}
+
+.filter {
+  display: none;
 }
